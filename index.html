@@ -17,7 +17,14 @@
         $('#main_content').headsmart()
       })
     </script>
-    <title>Nmscc-2012 by stigmergic</title>
+
+<script src="http://studio.sketchpad.cc/static/js/shCore.js?1"></script>
+<script src="http://studio.sketchpad.cc/static/js/shBrushProcessing.js?1"></script>
+<link href='http://fonts.googleapis.com/css?family=Droid+Sans+Mono' rel='stylesheet' type='text/css'>
+<link href="http://studio.sketchpad.cc/static/css/shCoreDefault.css?1" rel="stylesheet" type="text/css" />
+<script type="text/javascript">SyntaxHighlighter.all();</script>
+
+<title>Nmscc-2012 by stigmergic</title>
   </head>
 
   <body>
@@ -53,11 +60,44 @@
 <pre><code>$ git clone git@github.com:stigmergic/nmscc-2012.git
 </code></pre>
 
-<p>If you're using the GitHub for Mac, simply sync your repository and you'll see the new branch.</p>
 
 <h3>New Mexico Super Computing Challenge 2012</h3>
 
 <h3>Fractal</h3>
+
+<div id="canvas-wrapper"><script type="text/processing" data-processing-target="targetcanvas">
+float dx,dy,l;
+
+void setup() {
+size(500,500);
+
+}
+
+void draw() {
+background(0);
+stroke(255,255,0);
+line(width/2, height/2, mouseX, mouseY);
+ellipse(mouseX, mouseY, 10, 10);
+
+dx = (mouseX-width/2);
+dy = (mouseY-height/2);
+l = sqrt(sq(dx) + sq(dy));
+
+if (l>0) {
+dx = dx / l;
+dy = dy / l;
+
+stroke(255,0,0);
+line(mouseX, mouseY, 
+mouseX-dx*l/3, mouseY-dy*l/3);
+
+line(mouseX-dx*l/3 + dy*l/3, mouseY-dy*l/3 - dx*l/3,
+mouseX-dx*l/3 - dy*l/3, mouseY-dy*l/3 + dx*l/3);
+
+}
+}
+
+</script><canvas id="targetcanvas"></canvas><BR></div>
 
 <h3>Authors and Contributors</h3>
 
