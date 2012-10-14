@@ -61,9 +61,15 @@ void firstBranch(float x, float y) {
   // lengthRation describes the change in length between the parent and child branch.  In this fractal this is a constant ratio.
   float lengthRatio = branchLength / trunkLength;
 
-  drawBranch(x,y,angle, branchLength, changeInAngle, lengthRatio, numLevels);
+  drawBranches(x,y,angle, branchLength, changeInAngle, lengthRatio, numLevels);
 
 }
+
+void drawBranches(float x, float y, float angle, float branchLength, float changeInAngle, float lengthRatio, int level) {
+  drawBranch(x,y,angle, branchLength, changeInAngle, lengthRatio, level);
+  drawBranch(x,y,angle, branchLength, -changeInAngle, lengthRatio, level);
+} 
+
 
 void drawBranch(float x, float y, float angle, float branchLength, float changeInAngle, float lengthRatio, int level) {
   //calc new angle and branch length
@@ -71,8 +77,8 @@ void drawBranch(float x, float y, float angle, float branchLength, float changeI
   float new_branchLength = branchLength * lengthRatio;
   
   //calculate ends of new segment
-  float nx = x + cos(angle)*new_branchLength;
-  float ny = y + sin(angle)*new_branchLength;
+  float nx = x + cos(new_angle)*new_branchLength;
+  float ny = y + sin(new_angle)*new_branchLength;
 
   //Stroke width
   strokeWeight(level);
@@ -85,7 +91,7 @@ void drawBranch(float x, float y, float angle, float branchLength, float changeI
   //Recursive call!  
   //All recursive calls should have a stopping condition:
   //Level should be a positive integer.  Stop if it is negative or zero.
-  if (level > 0) drawBranch(nx,ny,new_angle,new_branchLength,changeInAngle,lengthRatio, level - 1);    
+  if (level > 0) drawBranches(nx,ny,new_angle,new_branchLength,changeInAngle,lengthRatio, level - 1);    
 }
 
 
