@@ -35,8 +35,12 @@ void draw() {
   stroke(trunkColor);  
   line(trunkX, trunkY, trunkX, trunkY + trunkLength);
   
+  firstBranch(mouseX,mouseY);
+  firstBranch(trunkX - (mouseX - trunkX),mouseY);
+}
+
+void firstBranch(float x, float y) {  
   stroke(branchColor);
-  line(trunkX,trunkY,mouseX,mouseY);
-  line(trunkX,trunkY,trunkX - (mouseX - trunkX),mouseY);
+  line(trunkX,trunkY,x,y);
 }
 
