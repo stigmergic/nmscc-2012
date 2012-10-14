@@ -42,5 +42,20 @@ void draw() {
 void firstBranch(float x, float y) {  
   stroke(branchColor);
   line(trunkX,trunkY,x,y);
+  
+    // pythagorean theroem the length of the branch is equal to the [Hypotenuse](http://en.wikipedia.org/wiki/Hypotenuse) of
+  // the triangle from the end of the trunk with one leg parrallel to the x axis and one leg parallel to the y axis 
+  float branchLength = sqrt(sq(x - trunkX) + sq(y - trunkY));
+
+  // [atan2](http://www.processing.org/reference/atan2_.html) 
+  // returns the angle of the right triangle above at the tip of the trunk.
+  float angle = atan2(y - trunkY, x - trunkX);
+  
+  //
+  float changeInAngle = angle + PI/2;  
+
+  // lengthRation describes the change in length between the parent and child branch.  In this fractal this is a constant ratio.
+  float lengthRatio = branchLength / trunkLength;
+
 }
 
