@@ -9,6 +9,6 @@ void setup() {
 
 // gets called over and over to animate the app every processing app has this method
 void draw() {
-  line(0,0,mouseX,mouseY);
+  line(width/2,height/2,mouseX,mouseY);
 }
 
