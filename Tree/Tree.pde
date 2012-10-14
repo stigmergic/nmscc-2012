@@ -1,5 +1,7 @@
 float trunkLength;                      //The length of the first segment and the radius of the circle
 
+int numLevels = 6;                      //Recursive depth to draw the fractal...  Higher numbers requi
+
 color trunkColor = color(255,255,0);    
 color branchColor = color(150,200,0);  
 color backgroundColor = color(0);    
@@ -25,7 +27,7 @@ void setup() {
 void draw() {
   background(backgroundColor);
   
-  strokeWeight(6);
+  strokeWeight(numLevels+2);
  
   noFill();
   stroke(circleColor);
@@ -41,6 +43,8 @@ void draw() {
 
 void firstBranch(float x, float y) {  
   stroke(branchColor);
+  strokeWeight(numLevels + 1);
+
   line(trunkX,trunkY,x,y);
   
     // pythagorean theroem the length of the branch is equal to the [Hypotenuse](http://en.wikipedia.org/wiki/Hypotenuse) of
@@ -57,5 +61,31 @@ void firstBranch(float x, float y) {
   // lengthRation describes the change in length between the parent and child branch.  In this fractal this is a constant ratio.
   float lengthRatio = branchLength / trunkLength;
 
+  drawBranch(x,y,angle, branchLength, changeInAngle, lengthRatio, numLevels);
+
 }
+
+void drawBranch(float x, float y, float angle, float branchLength, float changeInAngle, float lengthRatio, int level) {
+  //calc new angle and branch length
+  float new_angle = angle + changeInAngle;
+  float new_branchLength = branchLength * lengthRatio;
+  
+  //calculate ends of new segment
+  float nx = x + cos(angle)*new_branchLength;
+  float ny = y + sin(angle)*new_branchLength;
+
+  //Stroke width
+  strokeWeight(level);
+  
+  stroke(branchColor);
+  
+  //draw segment
+  line(x,y,nx,ny);
+
+  //Recursive call!  
+  //All recursive calls should have a stopping condition:
+  //Level should be a positive integer.  Stop if it is negative or zero.
+  if (level > 0) drawBranch(nx,ny,new_angle,new_branchLength,changeInAngle,lengthRatio, level - 1);    
+}
+
 
