@@ -2,6 +2,7 @@ float trunkLength;                      //The length of the first segment and th
 
 color trunkColor = color(255,255,0);    
 color backgroundColor = color(0);    
+color circleColor = color(100);        
 
 float trunkX;
 float trunkY;
@@ -24,6 +25,11 @@ void draw() {
   background(backgroundColor);
   
   strokeWeight(6);
+ 
+  noFill();
+  stroke(circleColor);
+  ellipse(trunkX, trunkY, trunkLength*2, trunkLength*2);
+
 
   stroke(trunkColor);  
   line(trunkX, trunkY, trunkX, trunkY + trunkLength);
