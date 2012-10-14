@@ -1,6 +1,7 @@
 float trunkLength;                      //The length of the first segment and the radius of the circle
 
 color trunkColor = color(255,255,0);    
+color branchColor = color(150,200,0);  
 color backgroundColor = color(0);    
 color circleColor = color(100);        
 
@@ -34,7 +35,8 @@ void draw() {
   stroke(trunkColor);  
   line(trunkX, trunkY, trunkX, trunkY + trunkLength);
   
-  stroke(trunkColor);
+  stroke(branchColor);
   line(trunkX,trunkY,mouseX,mouseY);
+  line(trunkX,trunkY,trunkX - (mouseX - trunkX),mouseY);
 }
 
