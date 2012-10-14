@@ -4,6 +4,7 @@ int numLevels = 6;                      //Recursive depth to draw the fractal...
 
 color trunkColor = color(255,255,0);    
 color branchColor = color(150,200,0);  
+color leafColor = color(0,255,0);      
 color backgroundColor = color(0);    
 color circleColor = color(100);        
 
@@ -83,8 +84,13 @@ void drawBranch(float x, float y, float angle, float branchLength, float changeI
   //Stroke width
   strokeWeight(level);
   
-  stroke(branchColor);
-  
+  //Stroke color
+  if (branchLength < width/32) {
+    stroke(leafColor);
+  } else {
+    stroke(branchColor);
+  }
+
   //draw segment
   line(x,y,nx,ny);
 
